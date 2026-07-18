@@ -110,8 +110,7 @@ Verified July 18, 2026:
 
 Automated OpenAI tests mock only the upstream HTTP boundary. They assert the
 actual model value, strict schema mode, `store: false`, role enforcement,
-context inclusion, response parsing, and safe failure. A real generation
-requires the submission deployment's server-side `OPENAI_API_KEY`.
+context inclusion, response parsing, and safe failure.
 
 ### Production deployment verification
 
@@ -133,9 +132,22 @@ Verified July 18, 2026 at approximately 13:27 UTC:
 - An authenticated business request returned the designed safe `503` while
   `OPENAI_API_KEY` remained empty.
 
-No real OpenAI request was made during this gate. The two live GPT-5.6
-generations remain pending until the submission owner installs the key
-privately.
+The submission owner then installed `OPENAI_API_KEY` privately and activated
+API credits. Verified July 18, 2026 at approximately 17:04 UTC:
+
+- Laravel configuration and route caches rebuilt successfully with
+  `OPENAI_MODEL=gpt-5.6`.
+- `/api/health` and `/api/ready` both returned `200`.
+- A real authenticated Campaign Architect request returned `200`, requested
+  `gpt-5.6`, was served by `gpt-5.6-sol`, and returned all required structured
+  fields plus three content angles.
+- The server preserved the submitted platform, target views, payout, creator
+  count, and brand mention exactly.
+- A real authenticated Creator Coach request returned `200`, requested
+  `gpt-5.6`, was served by `gpt-5.6-sol`, and returned a valid score, verdict,
+  and nine-item campaign checklist.
+- Protected temporary bearer tokens and raw response files were deleted after
+  validation. No API key value was read or recorded.
 
 ## Deliberate boundaries
 
@@ -144,6 +156,6 @@ privately.
 - AI output is advisory and cannot mutate approval or financial state.
 - The direct-install judge APK uses the local Android debug certificate because
   no production upload keystore is present; it is not a Play Store artifact.
-- The YouTube demo, Devpost form, OpenAI key, license decision, and Codex
-  `/feedback` session ID require the submission owner's authenticated accounts
-  or explicit approval.
+- The YouTube demo, Devpost form, license decision, and Codex `/feedback`
+  session ID require the submission owner's authenticated accounts or explicit
+  approval.

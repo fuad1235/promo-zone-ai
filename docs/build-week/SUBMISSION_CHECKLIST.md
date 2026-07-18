@@ -28,10 +28,10 @@ Verify the deadline and final requirements on the
 
 ## Submission owner actions
 
-- [ ] Add `OPENAI_API_KEY` to a server-side deployment secret.
+- [x] Add `OPENAI_API_KEY` to a server-side deployment secret.
 - [x] Deploy the Laravel API behind a public HTTPS URL.
-- [ ] Run one real Campaign Architect request against GPT-5.6.
-- [ ] Run one real Creator Coach request against GPT-5.6.
+- [x] Run one real Campaign Architect request against GPT-5.6.
+- [x] Run one real Creator Coach request against GPT-5.6.
 - [x] Rebuild the Android artifact with the public HTTPS API URL.
 - [ ] Upload the final APK/build to a stable judge-accessible URL.
 - [x] Create/push a public Git repository, or keep it private and grant access
@@ -73,13 +73,13 @@ php artisan route:list --path=api/ai
 
 Then verify:
 
-- [ ] Business account can generate and edit a brief.
-- [ ] Creator account can receive campaign-specific coaching.
-- [ ] Wrong roles get `403` without an OpenAI request.
+- [x] Business account can generate and edit a brief.
+- [x] Creator account can receive campaign-specific coaching.
+- [x] Wrong roles get `403` without an OpenAI request.
 - [x] Missing key gets safe `503`.
 - [x] Health and readiness endpoints return success.
 - [ ] No key/token appears in app logs, video, repository, or APK configuration.
-- [ ] Payout and approval state cannot be changed by AI output.
+- [x] Payout and approval state cannot be changed by AI output.
 
 ## Devpost form audit
 

@@ -178,6 +178,12 @@ verified HTTPS hostname, signature-checked, and inspected to confirm its final
 label and HTTPS-only manifest. Artifact checksums are recorded in the judge
 guide.
 
+On July 18, 2026, both production AI endpoints were also exercised with real
+authenticated requests. Campaign Architect and Creator Coach each returned
+`200` with valid strict-schema output from the requested `gpt-5.6` model. The
+server preserved the business-controlled campaign values, and coaching
+returned a valid score, verdict, and campaign checklist.
+
 ## Product stack
 
 - Flutter, Material 3, Riverpod, GoRouter

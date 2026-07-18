@@ -130,6 +130,7 @@ the static test suite could not expose.
 - 15 passing Laravel tests with 70 assertions.
 - Timestamped old-vs-new evidence for an existing project.
 - End-to-end Android inspection for both roles.
+- Live production validation of both authenticated GPT-5.6 workflows.
 
 ## What we learned
 

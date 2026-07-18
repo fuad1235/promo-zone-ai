@@ -40,6 +40,9 @@ the resulting evidence lives.
      inspected both AI workflows.
    - Exercised the missing-key path on device to confirm a safe user-facing
      error.
+   - Rebuilt production configuration after the owner installed the API key,
+     then ran and schema-validated one live GPT-5.6 request for each workflow
+     without exposing credentials.
 6. **Submission preparation**
    - Produced the old-vs-new changelog, judge guide, Devpost narrative,
      under-three-minute script, and owner checklist.
@@ -48,6 +51,8 @@ the resulting evidence lives.
      contain the Build Week AI routes.
    - Built and inspected the production-targeted Android artifact, corrected
      its visible product name, and disabled cleartext HTTP in release builds.
+   - Deployed the backend overlay with a private rollback archive and verified
+     health, readiness, authentication, and both real OpenAI flows.
 
 ## Important decisions
 

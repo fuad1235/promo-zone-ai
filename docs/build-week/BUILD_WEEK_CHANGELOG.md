@@ -156,6 +156,5 @@ API credits. Verified July 18, 2026 at approximately 17:04 UTC:
 - AI output is advisory and cannot mutate approval or financial state.
 - The direct-install judge APK uses the local Android debug certificate because
   no production upload keystore is present; it is not a Play Store artifact.
-- The YouTube demo, Devpost form, license decision, and Codex `/feedback`
-  session ID require the submission owner's authenticated accounts or explicit
-  approval.
+- The YouTube demo, Devpost form, and Codex `/feedback` session ID require the
+  submission owner's authenticated accounts.

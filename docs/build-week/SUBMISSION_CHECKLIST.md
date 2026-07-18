@@ -39,7 +39,7 @@ Verify the deadline and final requirements on the
   - [x] Public repository selected; private-access invitations are not needed.
 - [x] Confirm the repository contains the timestamped baseline and Build Week
       commits.
-- [ ] Add the submission owner's approved open-source license.
+- [x] Add the submission owner's approved open-source license.
 - [ ] Record the demo with spoken audio using `DEMO_SCRIPT.md`.
 - [ ] Keep the final edit under three minutes.
 - [ ] Upload the video publicly to YouTube.

@@ -217,6 +217,10 @@ returned a valid score, verdict, and campaign checklist.
 - [OpenAPI contract](backend/docs/openapi.yaml)
 - [Production release runbook](docs/release_runbook.md)
 
+## License
+
+Promo Zone AI is available under the [MIT License](LICENSE).
+
 ## Intentional MVP boundary
 
 The wallet uses simulated credits and ledger-backed holds. Real Mobile Money or

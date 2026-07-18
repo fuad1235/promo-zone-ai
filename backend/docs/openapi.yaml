@@ -1,0 +1,195 @@
+openapi: 3.0.3
+info:
+  title: Promo Zone API
+  version: 1.0.0
+servers:
+  - url: https://api.promozone.example
+paths:
+  /api/auth/register:
+    post:
+      summary: Register and get bearer token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '201': { description: Registered }
+  /api/auth/login:
+    post:
+      summary: Login and get bearer token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '200': { description: Logged in }
+  /api/auth/me:
+    get:
+      summary: Current authenticated user
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: User info }
+  /api/auth/logout:
+    post:
+      summary: Invalidate current token
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Logged out }
+  /api/auth/sync-profile:
+    post:
+      summary: Sync role and onboarding profile into Laravel MySQL
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [displayName, role]
+              properties:
+                displayName: { type: string }
+                phone: { type: string }
+                role: { type: string, enum: [creator, business, admin] }
+                email: { type: string }
+                bio: { type: string }
+                niches:
+                  type: array
+                  items: { type: string }
+                companyName: { type: string }
+      responses:
+        '200': { description: Synced }
+  /api/uploads:
+    post:
+      summary: Upload media file
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                folder:
+                  type: string
+      responses:
+        '201': { description: Uploaded }
+  /api/campaigns:
+    get:
+      summary: List published campaigns
+      parameters:
+        - in: query
+          name: platform
+          schema: { type: string }
+        - in: query
+          name: minPayout
+          schema: { type: integer }
+        - in: query
+          name: maxPayout
+          schema: { type: integer }
+      responses:
+        '200': { description: Campaign list }
+    post:
+      summary: Create campaign
+      security: [{ bearerAuth: [] }]
+      responses:
+        '201': { description: Created }
+  /api/campaigns/{campaignId}/apply:
+    post:
+      summary: Creator apply to campaign
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: campaignId
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '201': { description: Applied }
+  /api/campaigns/{campaignId}/applications/{applicationId}/approve:
+    post:
+      summary: Approve creator and create hold
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: campaignId
+          required: true
+          schema: { type: string, format: uuid }
+        - in: path
+          name: applicationId
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200': { description: Approved }
+  /api/campaigns/{campaignId}/applications/{applicationId}/approve-proof:
+    post:
+      summary: Approve proof and payout
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Paid }
+  /api/applications/{applicationId}/submissions:
+    post:
+      summary: Submit sample or proof
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: { type: string, enum: [sample, proof] }
+                message: { type: string }
+                mediaUrls:
+                  type: array
+                  items: { type: string }
+                postUrl: { type: string }
+                screenshots:
+                  type: array
+                  items: { type: string }
+                declaredViews: { type: integer }
+      responses:
+        '201': { description: Submission created }
+  /api/wallet:
+    get:
+      summary: Get wallet and ledger
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Wallet payload }
+  /api/wallet/deposit:
+    post:
+      summary: Simulated deposit
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Deposited }
+  /api/wallet/withdraw-request:
+    post:
+      summary: Creator withdraw request placeholder
+      security: [{ bearerAuth: [] }]
+      responses:
+        '201': { description: Request created }
+  /api/holds/refund:
+    post:
+      summary: Refund active hold
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200': { description: Refunded }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,110 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function userDoc(uid) {
+      return get(/databases/$(database)/documents/users/$(uid));
+    }
+
+    function role() {
+      return signedIn() ? userDoc(request.auth.uid).data.role : null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return role() == 'admin';
+    }
+
+    match /users/{uid} {
+      allow read, update: if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid);
+    }
+
+    match /creatorProfiles/{uid} {
+      allow read, write: if isOwner(uid) || isAdmin();
+    }
+
+    match /creatorHandles/{uid}/handles/{handleId} {
+      allow read, write: if isOwner(uid) || isAdmin();
+    }
+
+    match /businessProfiles/{uid} {
+      allow read, write: if isOwner(uid) || isAdmin();
+    }
+
+    match /campaigns/{campaignId} {
+      allow read: if resource.data.status == 'published' ||
+        (signedIn() && (resource.data.businessId == request.auth.uid || isAdmin()));
+      allow create: if signedIn() && role() == 'business' && request.resource.data.businessId == request.auth.uid;
+      allow update, delete: if signedIn() && (resource.data.businessId == request.auth.uid || isAdmin());
+
+      match /applications/{applicationId} {
+        allow read: if signedIn() && (
+          resource.data.creatorId == request.auth.uid ||
+          resource.data.businessId == request.auth.uid ||
+          isAdmin()
+        );
+
+        allow create: if signedIn()
+          && role() == 'creator'
+          && request.resource.data.creatorId == request.auth.uid
+          && request.resource.data.status == 'applied';
+
+        allow update: if signedIn() && (
+          resource.data.creatorId == request.auth.uid ||
+          resource.data.businessId == request.auth.uid ||
+          isAdmin()
+        );
+
+        match /submissions/{submissionId} {
+          allow read: if signedIn() && (
+            get(/databases/$(database)/documents/campaigns/$(campaignId)/applications/$(applicationId)).data.creatorId == request.auth.uid ||
+            get(/databases/$(database)/documents/campaigns/$(campaignId)/applications/$(applicationId)).data.businessId == request.auth.uid ||
+            isAdmin()
+          );
+
+          allow create: if signedIn() && role() == 'creator'
+            && get(/databases/$(database)/documents/campaigns/$(campaignId)/applications/$(applicationId)).data.creatorId == request.auth.uid;
+
+          allow update: if signedIn() && (
+            get(/databases/$(database)/documents/campaigns/$(campaignId)/applications/$(applicationId)).data.businessId == request.auth.uid ||
+            isAdmin()
+          );
+        }
+      }
+    }
+
+    match /wallets/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow write: if false; // Wallet updates only via server/admin SDK
+
+      match /ledger/{txId} {
+        allow read: if isOwner(uid) || isAdmin();
+        allow write: if false; // Ledger immutable from client
+      }
+    }
+
+    match /holds/{holdId} {
+      allow read: if signedIn() && (
+        resource.data.businessId == request.auth.uid ||
+        resource.data.creatorId == request.auth.uid ||
+        isAdmin()
+      );
+      allow write: if false; // Functions only
+    }
+
+    match /withdrawRequests/{requestId} {
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+      allow read: if signedIn() && (
+        resource.data.uid == request.auth.uid || isAdmin()
+      );
+      allow update, delete: if isAdmin();
+    }
+  }
+}

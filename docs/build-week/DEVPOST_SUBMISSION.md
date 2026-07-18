@@ -164,10 +164,13 @@ Build Week product commits:
 44e8173 feat(api): add GPT-5.6 campaign architect and creator coach
 82b4b82 fix(dev): restore clean local build and Android runtime
 e4d9115 feat(app): add GPT-5.6 campaign and creator workflows
+e84350e chore(release): polish app identity and require HTTPS
 ```
 
-The repository contains the baseline fingerprint, old-vs-new changelog, Codex
-record, setup instructions, sample data, tests, and demo path.
+Submission evidence and deployment documentation were added in separate
+timestamped commits. The repository contains the baseline fingerprint,
+old-vs-new changelog, Codex record, setup instructions, sample data, tests, and
+demo path.
 
 ## Built with
 

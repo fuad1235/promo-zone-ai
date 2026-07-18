@@ -23,6 +23,9 @@ The complete baseline disclosure and source fingerprint are in
 | `44e8173` | 2026-07-18 10:43:04 | Added secure Laravel GPT-5.6 Campaign Architect and Creator Coach endpoints |
 | `82b4b82` | 2026-07-18 11:42:49 | Restored a clean Flutter 3.44 local build/runtime and Laravel dev router |
 | `e4d9115` | 2026-07-18 11:43:04 | Added both GPT-5.6 Flutter workflows, result models, tests, and human-control UX |
+| `02e964a` | 2026-07-18 11:56:20 | Added the judge guide, Devpost copy, demo script, and submission checklist |
+| `6b118af` | 2026-07-18 12:01:32 | Corrected deployment documentation to the verified production API root |
+| `e84350e` | 2026-07-18 12:09:35 | Aligned release branding and required HTTPS in production mobile builds |
 
 From baseline commit `4fdbe4e` through product commit `e4d9115`, the Build Week
 extension changed 24 files with 2,561 additions and 13 deletions.
@@ -92,6 +95,12 @@ Verified July 18, 2026:
 - Final local debug APK: 162,228,625 bytes.
 - APK SHA-256:
   `06e8f9f9eb83b3ed4f67e3860c930420630c50aed9e098c52d36481e3f32178b`.
+- Production-targeted release APK: 56,497,051 bytes.
+- Release APK SHA-256:
+  `6dc8b83fc8eb32017705305cc38dba1ad35a3c768db0f106895dd0c8416651b8`.
+- Release APK verified with Android Signature Scheme v2, label
+  `Promo Zone AI`, target SDK 36, minimum SDK 24, and
+  `usesCleartextTraffic=false`.
 - Device: Android API 36.1 emulator.
 - Business flow inspected: login → Work → Create → Campaign Architect sheet.
 - Creator flow inspected: login → Browse → campaign → Creator Coach sheet.
@@ -109,5 +118,7 @@ requires the submission deployment's server-side `OPENAI_API_KEY`.
 - Real Mobile Money/bank settlement and payment-provider webhooks remain out of
   scope; the app uses simulated credits with real transactional ledger logic.
 - AI output is advisory and cannot mutate approval or financial state.
+- The direct-install judge APK uses the local Android debug certificate because
+  no production upload keystore is present; it is not a Play Store artifact.
 - A public repository, hosted API, YouTube demo, Devpost form, and Codex
   `/feedback` session ID require the submission owner's authenticated accounts.

@@ -175,29 +175,39 @@ Expected: 15 passing tests / 70 assertions and clean Laravel formatting.
 
 ## APK
 
-Local output:
+Production-targeted local handoff artifact (ignored from Git; upload it to the
+public test-build URL before submission):
 
 ```text
-build/app/outputs/flutter-apk/app-debug.apk
+artifacts/Promo-Zone-AI-Android-e84350e.apk
 ```
 
-Final locally verified debug artifact, built July 18, 2026 at 11:54:40 UTC:
+Built July 18, 2026 at 12:08:57 UTC:
 
 ```text
-Size: 162,228,625 bytes
-SHA-256: 06e8f9f9eb83b3ed4f67e3860c930420630c50aed9e098c52d36481e3f32178b
-API base URL: http://127.0.0.1:8000
+Size: 56,497,051 bytes
+SHA-256: 6dc8b83fc8eb32017705305cc38dba1ad35a3c768db0f106895dd0c8416651b8
+API base URL: https://promozone.boldtechai.com
+Application label: Promo Zone AI
+Android: minimum SDK 24, target SDK 36
+Manifest: usesCleartextTraffic=false
+Signature: verified with APK Signature Scheme v2
 ```
 
-This local artifact is for emulator/device evaluation with `adb reverse`. A
-public judge artifact must be rebuilt with:
+This direct-install judge build falls back to the local Android debug
+certificate because no production upload keystore is present. It is suitable
+for an APK test link, but not for Play Store publication.
+
+Reproduce it with:
 
 ```bash
-flutter build apk --debug \
-  --dart-define=LARAVEL_API_BASE_URL=https://YOUR_PUBLIC_API
+flutter build apk --release \
+  --dart-define=LARAVEL_API_BASE_URL=https://promozone.boldtechai.com
 ```
 
-For local emulator evaluation, use `http://127.0.0.1:8000` plus `adb reverse`.
+Do not publish the artifact until the GPT-5.6 backend overlay is deployed and
+both live AI flows pass. For local emulator evaluation, use a debug build with
+`http://127.0.0.1:8000` plus `adb reverse`.
 
 ## Troubleshooting
 

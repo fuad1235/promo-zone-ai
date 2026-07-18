@@ -20,6 +20,8 @@ Verify the deadline and final requirements on the
 - [x] Flutter analysis and tests pass.
 - [x] Laravel tests pass.
 - [x] Android build succeeds and both roles were inspected on device.
+- [x] Release APK built against the verified public HTTPS hostname.
+- [x] Release signature, label, SDK targets, and HTTPS-only manifest inspected.
 - [x] README includes setup, sample accounts, testing, GPT-5.6, Codex decisions,
       safety, and old-vs-new disclosure.
 - [x] Devpost description and demo script prepared.
@@ -30,7 +32,7 @@ Verify the deadline and final requirements on the
 - [ ] Deploy the Laravel API behind a public HTTPS URL.
 - [ ] Run one real Campaign Architect request against GPT-5.6.
 - [ ] Run one real Creator Coach request against GPT-5.6.
-- [ ] Rebuild the Android artifact with the public HTTPS API URL.
+- [x] Rebuild the Android artifact with the public HTTPS API URL.
 - [ ] Upload the final APK/build to a stable judge-accessible URL.
 - [ ] Create/push a public Git repository, or keep it private and grant access
       to:

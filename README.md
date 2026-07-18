@@ -172,8 +172,11 @@ Current result: **15 Laravel tests pass with 70 assertions**, including:
 - safe behavior when the server key is missing;
 - transactional hold, payout, refund, and idempotency invariants.
 
-An Android debug APK was also built and both new workflows were inspected on an
-API 36.1 emulator. A final artifact checksum is recorded in the judge guide.
+Both new workflows were inspected from a clean Android debug build on an API
+36.1 emulator. A production-targeted release APK was then built against the
+verified HTTPS hostname, signature-checked, and inspected to confirm its final
+label and HTTPS-only manifest. Artifact checksums are recorded in the judge
+guide.
 
 ## Product stack
 

@@ -43,6 +43,11 @@ the resulting evidence lives.
 6. **Submission preparation**
    - Produced the old-vs-new changelog, judge guide, Devpost narrative,
      under-three-minute script, and owner checklist.
+   - Probed the existing production API, identified its actual domain-root
+     mount, and confirmed that the old deployment was healthy but did not yet
+     contain the Build Week AI routes.
+   - Built and inspected the production-targeted Android artifact, corrected
+     its visible product name, and disabled cleartext HTTP in release builds.
 
 ## Important decisions
 
@@ -61,6 +66,9 @@ the resulting evidence lives.
 ## Commit evidence
 
 ```text
+e84350e chore(release): polish app identity and require HTTPS
+6b118af docs(deploy): correct production API base URL
+02e964a docs(build-week): add judge and Devpost submission package
 e4d9115 feat(app): add GPT-5.6 campaign and creator workflows
 82b4b82 fix(dev): restore clean local build and Android runtime
 44e8173 feat(api): add GPT-5.6 campaign architect and creator coach
@@ -71,7 +79,7 @@ Review:
 
 ```bash
 git log --format=fuller --reverse
-git diff 4fdbe4e..e4d9115
+git diff 4fdbe4e..HEAD
 ```
 
 ## Key implementation locations

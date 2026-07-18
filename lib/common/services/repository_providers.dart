@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 import '../../features/auth/data/auth_repository.dart';
+import '../../features/ai/data/ai_campaign_repository.dart';
 import '../../features/campaigns/data/application_repository.dart';
 import '../../features/campaigns/data/campaign_repository.dart';
 import '../../features/campaigns/data/submission_repository.dart';
@@ -15,6 +16,10 @@ import 'storage_service.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepository(ref.watch(apiClientProvider));
+});
+
+final aiCampaignRepositoryProvider = Provider<AiCampaignRepository>((ref) {
+  return AiCampaignRepository(ref.watch(apiClientProvider));
 });
 
 final campaignRepositoryProvider = Provider<CampaignRepository>((ref) {

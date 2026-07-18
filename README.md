@@ -1,149 +1,216 @@
-# Promo Zone
+# Promo Zone AI
 
-Production-grade Flutter MVP for a creator-business promo marketplace with escrow-like credit holds, creator workflow approvals, proof submissions, and ledger-backed wallet accounting.
+GPT-5.6 turns a rough product idea into an executable creator campaign, then
+coaches creator drafts against the real brief—while people keep control of
+publishing, approvals, and payouts.
 
-## Stack
+**OpenAI Build Week 2026 · Work & Productivity**
 
-- Flutter stable, Dart 3+
-- Material 3 UI
-- Riverpod (state)
-- GoRouter (navigation)
-- Laravel API + MySQL (token auth, campaigns, submissions, wallet/ledger)
-- Laravel uploads endpoint for media files
+Promo Zone AI is a Flutter and Laravel marketplace for small brands and content
+creators. It combines two AI-assisted workflows with the operational system
+needed to act on them: applications, proof review, ledger-backed credit holds,
+and creator payouts.
 
-## Project Structure
+## The problem
 
-- `lib/main.dart`
-- `lib/app/router.dart`
-- `lib/features/auth/`
-- `lib/features/creator/`
-- `lib/features/business/`
-- `lib/features/campaigns/`
-- `lib/features/wallet/`
-- `lib/common/widgets/`
-- `lib/common/services/`
-- `functions/` (TypeScript Cloud Functions)
-- `firestore.rules`
-- `firestore.indexes.json`
+Small brands often start with an incomplete idea, not a creator-ready brief.
+Creators then lose time clarifying requirements or discover after filming that
+they missed a mention, hashtag, claim restriction, or deliverable. Generic
+chatbots can produce copy, but they do not understand the live campaign or sit
+inside the workflow where the work happens.
 
-## Firebase Setup
+Promo Zone AI closes that gap:
 
-1. Create a Firebase project.
-2. Enable:
-   - Authentication (Email/Password)
-   - Cloud Firestore
-   - Cloud Storage
-   - Cloud Functions
-3. Configure Flutter app IDs for Android and iOS.
-4. Run (recommended):
-   - `flutterfire configure`
-5. Deploy rules/indexes:
-   - `firebase deploy --only firestore:rules,firestore:indexes`
-6. Deploy functions:
-   - `cd functions && npm install && npm run build && firebase deploy --only functions`
+1. **Campaign Architect** turns business context into an editable brief,
+   guardrails, creator profile, success signal, hashtags, and three distinct
+   content angles.
+2. **Creator Coach** reviews a hook, caption, or script against the selected
+   campaign and the authenticated creator's relevant profile context.
+3. **Human-controlled workflow** keeps AI away from campaign publishing,
+   creator approval, proof approval, wallet holds, and payout release.
 
-## Run App
+## Build Week scope
 
-1. `flutter pub get`
-2. Run with Laravel base URL:
-   - `flutter run --dart-define=LARAVEL_API_BASE_URL=https://your-api-host`
-   - Optional hardening flags:
-     - `--dart-define=API_TIMEOUT_MS=12000`
-     - `--dart-define=API_RETRY_COUNT=2`
-     - `--dart-define=API_RETRY_NON_IDEMPOTENT=false`
-     - `--dart-define=ENABLE_VERBOSE_API_LOGS=false`
-   - Note: release builds now enforce `https://` API URLs.
-3. Ensure backend token auth middleware is configured (see `backend/README.md`).
+Promo Zone existed before Build Week as a creator/business marketplace. The
+existing baseline included authentication, campaign operations, applications,
+submissions, and wallet accounting. It did **not** contain OpenAI integration or
+AI-assisted workflows.
 
-## Android Release Signing
+Everything after baseline commit `4fdbe4e` was built during this submission
+effort:
 
-1. Generate keystore (one-time):
-   - `keytool -genkey -v -keystore C:\Users\Fuad\upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000`
-2. Copy `android/key.properties.example` to `android/key.properties` and set real values.
-3. Build signed artifact:
-   - APK: `flutter build apk --release --dart-define=LARAVEL_API_BASE_URL=https://api.your-domain.com`
-   - AAB: `flutter build appbundle --release --dart-define=LARAVEL_API_BASE_URL=https://api.your-domain.com`
+- Laravel integration with the OpenAI Responses API and `gpt-5.6`.
+- Strict JSON-schema output for both AI features.
+- Role-protected, rate-limited AI endpoints.
+- Campaign Architect and Creator Coach Flutter experiences.
+- Prompt-injection boundaries, safe failures, token-usage metadata, and
+  human-decision safeguards.
+- AI feature tests, widget/model tests, Android runtime verification, and the
+  Build Week submission package.
 
-## Local Dev Shortcuts
+See the [pre-hackathon baseline](docs/build-week/PRE_HACKATHON_BASELINE.md) and
+[Build Week changelog](docs/build-week/BUILD_WEEK_CHANGELOG.md) for the exact
+boundary and commit evidence.
 
-- Local dev guide: `docs/local_dev.md`
-- Reset DB + seed demo: `bash scripts/dev-reset.sh`
-- Start backend: `bash scripts/dev-up.sh`
-- Run on Android (with adb reverse + debug defines): `bash scripts/dev-run-android.sh`
-- Quick health/adb diagnostics: `bash scripts/dev-check.sh`
-- PowerShell equivalents:
-  - `powershell -ExecutionPolicy Bypass -File .\scripts\dev-reset.ps1`
-  - `powershell -ExecutionPolicy Bypass -File .\scripts\dev-up.ps1`
-  - `powershell -ExecutionPolicy Bypass -File .\scripts\dev-run-android.ps1`
-  - `powershell -ExecutionPolicy Bypass -File .\scripts\dev-check.ps1`
+## How GPT-5.6 is used
 
-## Production Baseline
+The Laravel server calls `POST /v1/responses` with:
 
-- CI workflow: `.github/workflows/ci.yml`
-  - Flutter: `analyze` + `test`
-  - Laravel: `composer validate --strict` + `artisan test`
-- Release runbook: `docs/release_runbook.md`
-- Backend production env template: `backend/.env.production.example`
-- Readiness endpoint: `/api/ready` (DB + cache probe)
-- Demo marketplace data seeder: `backend/database/seeders/PromoMarketplaceSeeder.php`
-- Native deploy configs:
-  - `deploy/nginx/promozone.conf`
-  - `deploy/supervisor/promozone-worker.conf`
-  - `scripts/deploy.sh`
-  - `scripts/post-deploy-check.sh`
-  - `scripts/release-dry-run.sh`
-  - `scripts/load-smoke.sh`
-  - `scripts/rollback.sh`
-  - `scripts/db-backup.sh`
-  - `scripts/db-restore.sh`
+- `model: gpt-5.6`
+- strict Structured Outputs through `text.format.type: json_schema`
+- low reasoning effort for an interactive product experience
+- `store: false`
+- server-side API credentials only
 
-## Test
+Campaign Architect receives business-entered product facts, audience, goal,
+platform, tone, and campaign values. Even if model output drifts, the server
+overwrites platform, target views, payout, creator count, and brand mention
+with the business-controlled inputs before returning the result.
 
-- `flutter test`
+Creator Coach loads the selected published campaign and authenticated creator's
+profile, niches, metrics, and platform handle on the server. It returns a
+0–100 coaching score, verdict, brief checklist, strengths, missing
+requirements, risk flags, revised hook, revised draft, and shot list. The
+result never changes workflow or financial state.
 
-Included tests:
-- status transition validation (`test/common/status_transition_test.dart`)
-- campaign repository persistence (`test/features/campaign_repository_test.dart`)
-- campaign list widget (`test/features/campaign_list_widget_test.dart`)
+## Architecture
 
-## Core Workflow
+```mermaid
+flowchart LR
+    U[Flutter app] -->|Bearer token + user input| A[Laravel API]
+    A --> R{Role + rate limits}
+    R --> C[Campaign context]
+    R --> P[Creator profile context]
+    C --> O[OpenAI Responses API<br/>GPT-5.6 + strict schema]
+    P --> O
+    O --> V[Validated structured output]
+    V --> E[Editable suggestion or coaching]
+    E --> H[Human publish / approve / payout actions]
+    H --> L[Transactional wallet + ledger]
+```
 
-1. User registers, selects role, completes onboarding.
-2. Business creates + publishes campaign.
-3. Creator applies.
-4. Business approves creator via Laravel API `/api/campaigns/{campaignId}/applications/{applicationId}/approve`.
-   - Server checks wallet balance.
-   - Server creates active hold and ledger entries.
-5. Creator submits sample -> business approves/rejects.
-6. Creator marks posted, submits proof.
-7. Business approves proof via Laravel API `/api/campaigns/{campaignId}/applications/{applicationId}/approve-proof`.
-   - Server validates status + proof + view target.
-   - Server releases hold and posts payout to creator wallet.
-8. Optional refund via Laravel API `/api/holds/refund`.
+The OpenAI API key never enters Flutter. AI endpoints reuse the existing bearer
+authentication, enforce business/creator roles before token spend, and return
+safe `502`/`503` messages without exposing prompts, keys, or upstream payloads.
 
-## Security Notes
+## Judge quick start
 
-- Wallet + ledger client writes are blocked in `firestore.rules`.
-- Holds are server-managed only.
-- State machine validation exists in app UX (`StatusMachine`) and should be fully enforced by functions.
-- For production hardening, add stricter rules for each allowed status transition payload and immutable field checks.
+Prerequisites:
 
-## Firestore Index Notes
+- Flutter 3.44+ and Dart 3.12+
+- PHP 8.2+ and Composer
+- Android emulator/device
+- An OpenAI API key with access to GPT-5.6
 
-Configured in `firestore.indexes.json`:
-- `campaigns`: `status + platform + payoutAmountGhs`
-- `applications`: `creatorId + status`
-- `applications`: `businessId + campaignId + status`
+### 1. Start the API
 
-## Test Account Flow
+```bash
+cd backend
+composer install
+cp .env.example .env
+touch database/database.sqlite
+php artisan key:generate
+```
 
-- Business account:
-  - Register -> choose Business -> onboarding -> create campaign -> deposit credits -> approve applicants.
-- Creator account:
-  - Register -> choose Creator -> onboarding -> apply -> submit sample/proof.
+Add your key to the ignored `backend/.env` file:
 
-## Payments TODO (Intentional MVP Boundary)
+```dotenv
+OPENAI_API_KEY=your_server_side_key
+OPENAI_MODEL=gpt-5.6
+```
 
-- Real payout integrations (MoMo API/webhooks) are not implemented.
-- Creator withdraw flow records `withdrawRequests` only.
-- Settlement remains simulated through ledger + hold mechanics.
+Then seed and serve:
+
+```bash
+php artisan migrate:fresh --seed
+php artisan serve --no-reload
+```
+
+### 2. Run Flutter
+
+```bash
+flutter pub get
+adb reverse tcp:8000 tcp:8000
+flutter run --dart-define=LARAVEL_API_BASE_URL=http://127.0.0.1:8000
+```
+
+For a physical device, use the computer's LAN address instead of
+`127.0.0.1`, or keep the USB reverse tunnel.
+
+### 3. Follow the demo path
+
+All seeded accounts use password `Password@123`.
+
+| Role | Account | Demo path |
+| --- | --- | --- |
+| Business | `sparkbrew@promozone.test` | Work → Create → Build brief with GPT-5.6 |
+| Creator | `ama.creator@promozone.test` | Browse → campaign → Creator Coach |
+
+The [judge guide](docs/build-week/JUDGE_GUIDE.md) includes request examples,
+expected results, test commands, and troubleshooting.
+
+## Verification
+
+```bash
+flutter analyze
+flutter test
+```
+
+Current result: **7 Flutter tests pass, with zero analyzer issues.**
+
+```bash
+cd backend
+php artisan test
+./vendor/bin/pint --test
+```
+
+Current result: **15 Laravel tests pass with 70 assertions**, including:
+
+- structured GPT-5.6 Campaign Architect output;
+- campaign + creator context in Creator Coach;
+- role enforcement before OpenAI token spend;
+- safe behavior when the server key is missing;
+- transactional hold, payout, refund, and idempotency invariants.
+
+An Android debug APK was also built and both new workflows were inspected on an
+API 36.1 emulator. A final artifact checksum is recorded in the judge guide.
+
+## Product stack
+
+- Flutter, Material 3, Riverpod, GoRouter
+- Laravel 12, bearer-token authentication, SQLite locally / MySQL in production
+- OpenAI Responses API, GPT-5.6, strict Structured Outputs
+- Transactional wallets, holds, immutable ledger entries, idempotency keys
+- Laravel-hosted media uploads and seeded judge data
+
+## Safety and privacy choices
+
+- Treat business context, campaign text, creator profiles, and drafts as
+  untrusted data inside prompts.
+- Send only context needed for the requested feature.
+- Set `store: false` on Responses API calls.
+- Keep the API key server-side.
+- Restrict AI calls by authenticated role and a dedicated 10/minute limiter.
+- Never let model output publish campaigns, approve creators, validate proof,
+  move balances, or release payouts.
+- Preserve business-controlled numeric values after generation.
+- Log feature, user, request ID, exception class, and safe message—not prompts
+  or upstream response bodies.
+
+## Documentation
+
+- [Judge guide](docs/build-week/JUDGE_GUIDE.md)
+- [Build Week changelog](docs/build-week/BUILD_WEEK_CHANGELOG.md)
+- [Codex collaboration record](docs/build-week/CODEX_COLLABORATION.md)
+- [Copy-ready Devpost submission](docs/build-week/DEVPOST_SUBMISSION.md)
+- [Under-three-minute demo script](docs/build-week/DEMO_SCRIPT.md)
+- [Submission checklist](docs/build-week/SUBMISSION_CHECKLIST.md)
+- [OpenAPI contract](backend/docs/openapi.yaml)
+- [Production release runbook](docs/release_runbook.md)
+
+## Intentional MVP boundary
+
+The wallet uses simulated credits and ledger-backed holds. Real Mobile Money or
+bank settlement, payment webhooks, and identity verification are not included
+in this hackathon build. The financial state machine is real application logic;
+movement of external money is not.

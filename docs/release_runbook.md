@@ -27,6 +27,10 @@ All commands must pass before cutting a release.
    - `APP_DEBUG=false`
    - strong DB credentials
    - production SMTP credentials
+   - `OPENAI_API_KEY` through the host secret manager
+   - `OPENAI_MODEL=gpt-5.6`
+   - `OPENAI_BASE_URL=https://api.openai.com/v1`
+   - `AI_RATE_LIMIT_PER_MINUTE` for the expected traffic/cost budget
    - restrictive `CORS_ALLOWED_ORIGINS` (no wildcard)
    - `API_TOKEN_TTL_MINUTES` per your security policy
 3. Generate app key if missing:
@@ -58,6 +62,10 @@ curl -sS https://api.promozone.example/api/ready
 
 `/api/health` must return JSON with `status: "ok"`.
 `/api/ready` must return HTTP 200 with `status: "ready"`.
+
+Run one authenticated Campaign Architect and Creator Coach request in staging
+before recording or releasing. Never print the bearer token, OpenAI key,
+request prompt, or upstream response body in CI logs.
 
 ### Native Nginx + Supervisor Setup (No Docker)
 

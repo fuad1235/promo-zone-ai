@@ -19,6 +19,30 @@ What it does:
 - rebuilds DB schema (`migrate:fresh`)
 - seeds sample promo products/gigs (`PromoMarketplaceSeeder`)
 
+Seeded Build Week accounts all use `Password@123`:
+
+- business: `sparkbrew@promozone.test`
+- creator: `ama.creator@promozone.test`
+
+## 1.1 Configure GPT-5.6
+
+Add the key to ignored `backend/.env`; never put it in a Flutter define:
+
+```dotenv
+OPENAI_API_KEY=your_server_side_key
+OPENAI_MODEL=gpt-5.6
+```
+
+After changing it:
+
+```bash
+cd backend
+php artisan config:clear
+```
+
+Without a key, normal marketplace flows still work and AI endpoints return a
+safe `503` configuration message.
+
 ## 2. Start Backend
 
 ```bash
@@ -81,3 +105,11 @@ This checks:
 - backend `/api/health`
 - adb device list
 - adb reverse mappings
+
+## 5. Build Week demo paths
+
+- Business: Work → Create → Build brief with GPT-5.6.
+- Creator: Browse → campaign → Creator Coach → Coach my draft.
+
+For the full expected output and troubleshooting, see
+`docs/build-week/JUDGE_GUIDE.md`.

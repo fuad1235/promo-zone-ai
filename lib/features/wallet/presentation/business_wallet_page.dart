@@ -203,7 +203,7 @@ class _BusinessWalletPageState extends ConsumerState<BusinessWalletPage> {
                                         );
                                   },
                                 );
-                            if (!mounted) return;
+                            if (!mounted || !pageContext.mounted) return;
                             if (dialogContext.mounted) {
                               Navigator.of(dialogContext).pop();
                             }
@@ -216,7 +216,7 @@ class _BusinessWalletPageState extends ConsumerState<BusinessWalletPage> {
                                   content: Text('Deposit request submitted')),
                             );
                           } catch (e) {
-                            if (!mounted) return;
+                            if (!mounted || !pageContext.mounted) return;
                             if (dialogContext.mounted) {
                               setDialogState(() => submitting = false);
                             }

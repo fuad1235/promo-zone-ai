@@ -147,7 +147,7 @@ class ApiClient {
           'Session expired. Please login again.',
         );
       }
-      throw ApiException(message ?? 'Request failed (${response.statusCode})');
+      throw ApiException(message);
     } on ApiException {
       rethrow;
     } catch (_) {

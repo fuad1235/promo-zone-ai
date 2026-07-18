@@ -233,7 +233,7 @@ class _CreatorWalletPageState extends ConsumerState<CreatorWalletPage> {
                                     );
                                   },
                                 );
-                            if (!mounted) return;
+                            if (!mounted || !pageContext.mounted) return;
                             if (dialogContext.mounted) {
                               Navigator.of(dialogContext).pop();
                             }
@@ -246,7 +246,7 @@ class _CreatorWalletPageState extends ConsumerState<CreatorWalletPage> {
                                   content: Text('Withdraw request submitted')),
                             );
                           } catch (e) {
-                            if (!mounted) return;
+                            if (!mounted || !pageContext.mounted) return;
                             if (dialogContext.mounted) {
                               setDialogState(() => submitting = false);
                             }

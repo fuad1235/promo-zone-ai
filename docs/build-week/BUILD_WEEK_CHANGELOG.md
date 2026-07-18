@@ -113,6 +113,30 @@ actual model value, strict schema mode, `store: false`, role enforcement,
 context inclusion, response parsing, and safe failure. A real generation
 requires the submission deployment's server-side `OPENAI_API_KEY`.
 
+### Production deployment verification
+
+Verified July 18, 2026 at approximately 13:27 UTC:
+
+- Public API: `https://promozone.boldtechai.com`.
+- The pre-deployment production route/provider hashes exactly matched baseline
+  commit `4fdbe4e`.
+- A private rollback archive was created before any production file changed.
+- The uploaded backend overlay matched local SHA-256
+  `322bf59c258e834fef1fe1c7cf29c8b70a9d44dcdb3fb8e7888c7f5a27b49a20`.
+- All seven deployed PHP files passed syntax checks on Hostinger.
+- Laravel configuration and route caches rebuilt successfully.
+- Both protected AI routes appear in the production route table.
+- `/api/health` and `/api/ready` returned `200`.
+- The existing public campaign API continued to return `200`.
+- An unauthenticated AI request returned `401`, proving the route and
+  authentication boundary are active.
+- An authenticated business request returned the designed safe `503` while
+  `OPENAI_API_KEY` remained empty.
+
+No real OpenAI request was made during this gate. The two live GPT-5.6
+generations remain pending until the submission owner installs the key
+privately.
+
 ## Deliberate boundaries
 
 - Real Mobile Money/bank settlement and payment-provider webhooks remain out of
@@ -120,5 +144,6 @@ requires the submission deployment's server-side `OPENAI_API_KEY`.
 - AI output is advisory and cannot mutate approval or financial state.
 - The direct-install judge APK uses the local Android debug certificate because
   no production upload keystore is present; it is not a Play Store artifact.
-- A public repository, hosted API, YouTube demo, Devpost form, and Codex
-  `/feedback` session ID require the submission owner's authenticated accounts.
+- The YouTube demo, Devpost form, OpenAI key, license decision, and Codex
+  `/feedback` session ID require the submission owner's authenticated accounts
+  or explicit approval.

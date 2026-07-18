@@ -29,7 +29,7 @@ Verify the deadline and final requirements on the
 ## Submission owner actions
 
 - [ ] Add `OPENAI_API_KEY` to a server-side deployment secret.
-- [ ] Deploy the Laravel API behind a public HTTPS URL.
+- [x] Deploy the Laravel API behind a public HTTPS URL.
 - [ ] Run one real Campaign Architect request against GPT-5.6.
 - [ ] Run one real Creator Coach request against GPT-5.6.
 - [x] Rebuild the Android artifact with the public HTTPS API URL.
@@ -76,8 +76,8 @@ Then verify:
 - [ ] Business account can generate and edit a brief.
 - [ ] Creator account can receive campaign-specific coaching.
 - [ ] Wrong roles get `403` without an OpenAI request.
-- [ ] Missing key gets safe `503`.
-- [ ] Health and readiness endpoints return success.
+- [x] Missing key gets safe `503`.
+- [x] Health and readiness endpoints return success.
 - [ ] No key/token appears in app logs, video, repository, or APK configuration.
 - [ ] Payout and approval state cannot be changed by AI output.
 
@@ -93,5 +93,5 @@ Then verify:
 - [ ] Video is public, plays without login, has audio, and is under three
       minutes.
 - [ ] Test build works without requesting private credentials from judges.
-- [ ] Repository access works for judges.
+- [x] Repository access works for judges.
 - [ ] Codex session ID is present.

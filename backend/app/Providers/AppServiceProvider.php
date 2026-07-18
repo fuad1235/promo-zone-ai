@@ -31,7 +31,15 @@ class AppServiceProvider extends ServiceProvider
 
         RateLimiter::for('auth', function (Request $request) {
             $limit = (int) env('AUTH_RATE_LIMIT_PER_MINUTE', 20);
+
             return Limit::perMinute($limit)->by($request->ip());
+        });
+
+        RateLimiter::for('ai', function (Request $request) {
+            $limit = (int) env('AI_RATE_LIMIT_PER_MINUTE', 10);
+            $identity = $request->user()?->id ?: $request->ip();
+
+            return Limit::perMinute($limit)->by($identity);
         });
     }
 }

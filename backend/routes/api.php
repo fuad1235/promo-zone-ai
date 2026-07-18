@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AiCampaignController;
 use App\Http\Controllers\Api\ApplicationController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AuthSyncController;
@@ -106,4 +107,11 @@ Route::middleware(['api.auth', 'throttle:api'])->group(function (): void {
 
     Route::post('/holds/refund', [ApplicationController::class, 'refundHold'])
         ->middleware(['role:business,admin', 'idempotency']);
+
+    Route::prefix('ai')->middleware('throttle:ai')->group(function (): void {
+        Route::post('/campaign-brief', [AiCampaignController::class, 'campaignBrief'])
+            ->middleware('role:business');
+        Route::post('/campaigns/{campaignId}/creator-coach', [AiCampaignController::class, 'creatorCoach'])
+            ->middleware('role:creator');
+    });
 });

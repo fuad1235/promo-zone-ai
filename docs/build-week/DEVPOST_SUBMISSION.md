@@ -19,7 +19,7 @@ Work & Productivity
 ## Links
 
 ```text
-Repository: ADD_PUBLIC_REPOSITORY_URL
+Repository: https://github.com/fuad1235/promo-zone-ai
 Demo video: ADD_PUBLIC_YOUTUBE_URL
 Test build or product: ADD_PUBLIC_TEST_URL_OR_APK
 Codex session ID: ADD_FROM_SLASH_FEEDBACK

@@ -34,12 +34,12 @@ Verify the deadline and final requirements on the
 - [ ] Run one real Creator Coach request against GPT-5.6.
 - [x] Rebuild the Android artifact with the public HTTPS API URL.
 - [ ] Upload the final APK/build to a stable judge-accessible URL.
-- [ ] Create/push a public Git repository, or keep it private and grant access
+- [x] Create/push a public Git repository, or keep it private and grant access
       to:
-  - [ ] `testing@devpost.com`
-  - [ ] `build-week-event@openai.com`
-- [ ] Confirm the repository contains the timestamped baseline and Build Week
+  - [x] Public repository selected; private-access invitations are not needed.
+- [x] Confirm the repository contains the timestamped baseline and Build Week
       commits.
+- [ ] Add the submission owner's approved open-source license.
 - [ ] Record the demo with spoken audio using `DEMO_SCRIPT.md`.
 - [ ] Keep the final edit under three minutes.
 - [ ] Upload the video publicly to YouTube.

@@ -2,7 +2,10 @@
 
 Target API URL:
 
-- `https://promozone.boldtechai.com/promozone`
+- `https://promozone.boldtechai.com`
+
+The production probe on July 18, 2026 confirmed that the API is mounted at the
+domain root. Do not append the legacy `/promozone` suffix.
 
 Assumptions:
 
@@ -41,7 +44,7 @@ Confirm these keys exist:
 ```env
 APP_ENV=production
 APP_DEBUG=false
-APP_URL=https://promozone.boldtechai.com/promozone
+APP_URL=https://promozone.boldtechai.com
 
 DB_CONNECTION=mysql
 DB_HOST=...
@@ -86,7 +89,7 @@ Use snippets from `backend/docs/kernel_middleware_snippets.md`:
 ## 9. Smoke test API by curl
 
 ```bash
-curl -i -X POST "https://promozone.boldtechai.com/promozone/api/auth/register" \
+curl -i -X POST "https://promozone.boldtechai.com/api/auth/register" \
   -H "Content-Type: application/json" \
   -d '{"email":"test1@example.com","password":"secret123"}'
 ```
@@ -97,7 +100,7 @@ Then:
 
 ```bash
 TOKEN="<paste_token_here>"
-curl -i "https://promozone.boldtechai.com/promozone/api/auth/me" \
+curl -i "https://promozone.boldtechai.com/api/auth/me" \
   -H "Authorization: Bearer ${TOKEN}" \
   -H "Accept: application/json"
 ```
@@ -109,14 +112,14 @@ Expected: `200` with current user.
 Local run:
 
 ```bash
-flutter run --dart-define=LARAVEL_API_BASE_URL=https://promozone.boldtechai.com/promozone
+flutter run --dart-define=LARAVEL_API_BASE_URL=https://promozone.boldtechai.com
 ```
 
 Android release:
 
 ```bash
 flutter build apk --release \
-  --dart-define=LARAVEL_API_BASE_URL=https://promozone.boldtechai.com/promozone
+  --dart-define=LARAVEL_API_BASE_URL=https://promozone.boldtechai.com
 ```
 
 ## 11. Post-deploy validation flow

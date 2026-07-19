@@ -192,6 +192,10 @@ Verified July 19, 2026 at approximately 21:22 UTC:
 - The exact candidate installed and cold-launched on the API 36.1 x86_64
   emulator, loaded production campaign data, and returned a complete live
   Campaign Architect result from GPT-5.6.
+- The GitHub release asset was replaced under the existing stable download
+  URL, downloaded again anonymously, and matched the tested local APK's exact
+  `56,496,807`-byte size and SHA-256
+  `648a2c374fbff4ae51c67d9eed6b2d337bd3b0ae4b976b441c0bf3ad02afb672`.
 
 ## Deliberate boundaries
 

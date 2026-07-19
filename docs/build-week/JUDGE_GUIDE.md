@@ -213,6 +213,11 @@ successfully, loaded live production campaigns, and returned a complete
 Campaign Architect result from GPT-5.6 without the earlier 12-second client
 timeout.
 
+The replacement release asset was then downloaded anonymously from the public
+judge URL on July 19, 2026. Its `56,496,807`-byte size and SHA-256
+`648a2c374fbff4ae51c67d9eed6b2d337bd3b0ae4b976b441c0bf3ad02afb672`
+matched the installed local artifact exactly.
+
 Reproduce it with:
 
 ```bash

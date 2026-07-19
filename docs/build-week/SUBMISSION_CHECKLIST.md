@@ -50,7 +50,7 @@ Verify the deadline and final requirements on the
 - [x] Select **Work & Productivity**.
 - [x] Add the public repository, video, and test-build URLs.
 - [x] Include the explicit pre-existing-vs-new disclosure.
-- [ ] Test every link in a signed-out/incognito browser.
+- [x] Test every link in a signed-out/incognito browser.
 - [ ] Submit before the deadline.
 
 ## Final technical gate
@@ -79,7 +79,7 @@ Then verify:
 - [x] Wrong roles get `403` without an OpenAI request.
 - [x] Missing key gets safe `503`.
 - [x] Health and readiness endpoints return success.
-- [ ] No key/token appears in app logs, video, repository, or APK configuration.
+- [x] No key/token appears in app logs, video, repository, or APK configuration.
 - [x] Payout and approval state cannot be changed by AI output.
 
 ## Devpost form audit

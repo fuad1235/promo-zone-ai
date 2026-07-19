@@ -53,6 +53,9 @@ the resulting evidence lives.
      its visible product name, and disabled cleartext HTTP in release builds.
    - Deployed the backend overlay with a private rollback archive and verified
      health, readiness, authentication, and both real OpenAI flows.
+   - Verified the public GitHub release asset byte-for-byte, replaced the
+     default Laravel root with a product/testing page, and reran public API
+     regression checks.
 
 ## Important decisions
 

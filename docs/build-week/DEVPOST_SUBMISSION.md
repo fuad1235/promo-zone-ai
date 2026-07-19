@@ -21,7 +21,9 @@ Work & Productivity
 ```text
 Repository: https://github.com/fuad1235/promo-zone-ai
 Demo video: ADD_PUBLIC_YOUTUBE_URL
-Test build or product: ADD_PUBLIC_TEST_URL_OR_APK
+Product: https://promozone.boldtechai.com
+Android release: https://github.com/fuad1235/promo-zone-ai/releases/tag/v1.0.0-build-week
+Direct APK: https://github.com/fuad1235/promo-zone-ai/releases/download/v1.0.0-build-week/Promo-Zone-AI-Android-e84350e.apk
 Codex session ID: ADD_FROM_SLASH_FEEDBACK
 ```
 

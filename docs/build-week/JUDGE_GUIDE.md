@@ -175,8 +175,15 @@ Expected: 15 passing tests / 70 assertions and clean Laravel formatting.
 
 ## APK
 
-Production-targeted local handoff artifact (ignored from Git; upload it to the
-public test-build URL before submission):
+Public product and Android release:
+
+```text
+Product: https://promozone.boldtechai.com
+Release: https://github.com/fuad1235/promo-zone-ai/releases/tag/v1.0.0-build-week
+APK: https://github.com/fuad1235/promo-zone-ai/releases/download/v1.0.0-build-week/Promo-Zone-AI-Android-e84350e.apk
+```
+
+Matching production-targeted local artifact (ignored from Git):
 
 ```text
 artifacts/Promo-Zone-AI-Android-e84350e.apk
@@ -194,9 +201,13 @@ Manifest: usesCleartextTraffic=false
 Signature: verified with APK Signature Scheme v2
 ```
 
-This direct-install judge build falls back to the local Android debug
-certificate because no production upload keystore is present. It is suitable
-for an APK test link, but not for Play Store publication.
+This direct-install Android build falls back to the local Android debug
+certificate because no production upload keystore is present. It contains the
+complete app and is suitable for direct testing, but not for Play Store
+publication.
+
+The public asset was downloaded again on July 19, 2026. Its byte size and
+SHA-256 matched the tested local artifact exactly.
 
 Reproduce it with:
 
@@ -205,9 +216,9 @@ flutter build apk --release \
   --dart-define=LARAVEL_API_BASE_URL=https://promozone.boldtechai.com
 ```
 
-Do not publish the artifact until the GPT-5.6 backend overlay is deployed and
-both live AI flows pass. For local emulator evaluation, use a debug build with
-`http://127.0.0.1:8000` plus `adb reverse`.
+The GPT-5.6 backend overlay is deployed, both live AI flows pass, and the
+artifact is publicly available. For local emulator evaluation, use a debug
+build with `http://127.0.0.1:8000` plus `adb reverse`.
 
 ## Troubleshooting
 

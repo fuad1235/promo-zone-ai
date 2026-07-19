@@ -6,6 +6,10 @@ publishing, approvals, and payouts.
 
 **OpenAI Build Week 2026 · Work & Productivity**
 
+[Live product and demo access](https://promozone.boldtechai.com) ·
+[Android release](https://github.com/fuad1235/promo-zone-ai/releases/tag/v1.0.0-build-week) ·
+[Direct APK download](https://github.com/fuad1235/promo-zone-ai/releases/download/v1.0.0-build-week/Promo-Zone-AI-Android-e84350e.apk)
+
 Promo Zone AI is a Flutter and Laravel marketplace for small brands and content
 creators. It combines two AI-assisted workflows with the operational system
 needed to act on them: applications, proof review, ledger-backed credit holds,
@@ -183,6 +187,10 @@ authenticated requests. Campaign Architect and Creator Coach each returned
 `200` with valid strict-schema output from the requested `gpt-5.6` model. The
 server preserved the business-controlled campaign values, and coaching
 returned a valid score, verdict, and campaign checklist.
+
+The public product page provides the Android download, source, live API status,
+demo credentials, and judge guide. The release asset was downloaded publicly
+and matched the tested APK's size and SHA-256 exactly.
 
 ## Product stack
 

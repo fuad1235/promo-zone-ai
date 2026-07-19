@@ -149,6 +149,24 @@ API credits. Verified July 18, 2026 at approximately 17:04 UTC:
 - Protected temporary bearer tokens and raw response files were deleted after
   validation. No API key value was read or recorded.
 
+### Public product and Android release verification
+
+Verified July 19, 2026 at approximately 06:23 UTC:
+
+- Public product page: `https://promozone.boldtechai.com`.
+- Public Android release:
+  `https://github.com/fuad1235/promo-zone-ai/releases/tag/v1.0.0-build-week`.
+- The release is published from `main` with one fully uploaded APK asset.
+- The public APK downloaded successfully at exactly `56,497,051` bytes and
+  matched SHA-256
+  `6dc8b83fc8eb32017705305cc38dba1ad35a3c768db0f106895dd0c8416651b8`.
+- The default Laravel root was replaced with a responsive Promo Zone AI product
+  page linking to the APK, source, API status, demo accounts, and judge guide.
+- The candidate Blade template compiled with production PHP before deployment.
+- A private copy of the previous root view was retained for rollback.
+- After deployment, `/`, `/api/health`, `/api/ready`, and `/api/campaigns`
+  returned `200`; an unauthenticated AI request still returned `401`.
+
 ## Deliberate boundaries
 
 - Real Mobile Money/bank settlement and payment-provider webhooks remain out of

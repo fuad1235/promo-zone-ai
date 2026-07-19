@@ -33,7 +33,7 @@ Verify the deadline and final requirements on the
 - [x] Run one real Campaign Architect request against GPT-5.6.
 - [x] Run one real Creator Coach request against GPT-5.6.
 - [x] Rebuild the Android artifact with the public HTTPS API URL.
-- [ ] Upload the final APK/build to a stable judge-accessible URL.
+- [x] Upload the final APK/build to a stable judge-accessible URL.
 - [x] Create/push a public Git repository, or keep it private and grant access
       to:
   - [x] Public repository selected; private-access invitations are not needed.
@@ -92,6 +92,6 @@ Then verify:
       Flutter, and Laravel.
 - [ ] Video is public, plays without login, has audio, and is under three
       minutes.
-- [ ] Test build works without requesting private credentials from judges.
+- [x] Test build works without requesting private credentials from judges.
 - [x] Repository access works for judges.
 - [ ] Codex session ID is present.

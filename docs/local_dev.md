@@ -79,7 +79,9 @@ What it does:
 - runs Flutter with:
   - `LARAVEL_API_BASE_URL`
   - verbose API logs enabled by default
-  - timeout/retry dart defines
+  - a 60-second API timeout by default, which allows GPT-5.6 requests to
+    complete within the backend's configured processing window
+  - retry dart defines
 
 Useful overrides:
 

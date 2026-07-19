@@ -40,16 +40,16 @@ Verify the deadline and final requirements on the
 - [x] Confirm the repository contains the timestamped baseline and Build Week
       commits.
 - [x] Add the submission owner's approved open-source license.
-- [ ] Record the demo with spoken audio using `DEMO_SCRIPT.md`.
-- [ ] Keep the final edit under three minutes.
-- [ ] Upload the video publicly to YouTube.
+- [x] Record the demo with spoken audio.
+- [x] Keep the final edit under three minutes.
+- [x] Upload the video publicly to YouTube.
 - [ ] Create a 3:2 project thumbnail under Devpost's size limit.
 - [x] Run `/feedback` in the Build Week Codex session.
-- [ ] Copy the returned Codex session ID into Devpost.
-- [ ] Replace every `ADD_...` placeholder in `DEVPOST_SUBMISSION.md`.
-- [ ] Select **Work & Productivity**.
-- [ ] Add the public repository, video, and test-build URLs.
-- [ ] Include the explicit pre-existing-vs-new disclosure.
+- [x] Copy the returned Codex session ID into Devpost.
+- [x] Replace every `ADD_...` placeholder in `DEVPOST_SUBMISSION.md`.
+- [x] Select **Work & Productivity**.
+- [x] Add the public repository, video, and test-build URLs.
+- [x] Include the explicit pre-existing-vs-new disclosure.
 - [ ] Test every link in a signed-out/incognito browser.
 - [ ] Submit before the deadline.
 
@@ -60,7 +60,8 @@ flutter pub get
 flutter analyze
 flutter test
 flutter build apk --release \
-  --dart-define=LARAVEL_API_BASE_URL=https://YOUR_PUBLIC_API
+  --dart-define=LARAVEL_API_BASE_URL=https://YOUR_PUBLIC_API \
+  --dart-define=API_TIMEOUT_MS=60000
 ```
 
 ```bash
@@ -83,15 +84,15 @@ Then verify:
 
 ## Devpost form audit
 
-- [ ] Project name: Promo Zone AI.
-- [ ] Track: Work & Productivity.
-- [ ] Elevator pitch is under 200 characters.
-- [ ] Detailed story covers inspiration, product, implementation, GPT-5.6,
+- [x] Project name: Promo Zone AI.
+- [x] Track: Work & Productivity.
+- [x] Elevator pitch is under 200 characters.
+- [x] Detailed story covers inspiration, product, implementation, GPT-5.6,
       Codex, challenges, accomplishments, learnings, and next steps.
-- [ ] “Built with” includes GPT-5.6, Responses API, Structured Outputs, Codex,
+- [x] “Built with” includes GPT-5.6, Responses API, Structured Outputs, Codex,
       Flutter, and Laravel.
-- [ ] Video is public, plays without login, has audio, and is under three
+- [x] Video is public, plays without login, has audio, and is under three
       minutes.
 - [x] Test build works without requesting private credentials from judges.
 - [x] Repository access works for judges.
-- [ ] Codex session ID is present.
+- [x] Codex session ID is present.

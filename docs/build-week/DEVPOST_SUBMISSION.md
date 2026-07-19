@@ -1,6 +1,6 @@
 # Copy-ready Devpost submission
 
-Replace every `ADD_...` value before submission.
+Submission values and copy used for the Build Week entry.
 
 ## Project name
 
@@ -8,9 +8,9 @@ Promo Zone AI
 
 ## Elevator pitch
 
-GPT-5.6 turns rough product ideas into executable creator briefs, then coaches
-creator drafts against real campaign rules—while humans keep approvals and
-payouts in control.
+Promo Zone AI connects businesses with emerging and established creators to
+promote products in social videos, using GPT-5.6 to build briefs and coach
+creator drafts.
 
 ## Track
 
@@ -20,7 +20,7 @@ Work & Productivity
 
 ```text
 Repository: https://github.com/fuad1235/promo-zone-ai
-Demo video: ADD_PUBLIC_YOUTUBE_URL
+Demo video: https://www.youtube.com/watch?v=fu4yPJetCy8
 Product: https://promozone.boldtechai.com
 Android release: https://github.com/fuad1235/promo-zone-ai/releases/tag/v1.0.0-build-week
 Direct APK: https://github.com/fuad1235/promo-zone-ai/releases/download/v1.0.0-build-week/Promo-Zone-AI-Android-e84350e.apk
@@ -36,37 +36,38 @@ build-week-event@openai.com
 
 ## What it does
 
-Promo Zone AI helps small brands and creators move from a rough campaign idea
-to compliant, shoot-ready content without leaving the workflow where the work
-is managed.
+Promo Zone AI is a two-sided marketplace where businesses publish promotional
+campaigns and emerging or established social-media creators discover those
+campaigns, apply, feature the product or service in their videos, submit their
+work, and follow approval and payment status.
 
-For businesses, Campaign Architect turns product facts, audience, goals, tone,
-and commercial constraints into an editable creator brief, guardrails, ideal
-creator profile, success signal, hashtags, and three distinct content angles.
-The business keeps control of target views, payout, creator count, platform,
-publishing, and approval.
+Businesses provide the product or service, platform, target views, payout,
+number of creators, mentions, hashtags, content instructions, and
+restrictions. They review applications and submissions and remain responsible
+for every publishing, approval, and payout decision.
 
-For creators, Creator Coach reviews a hook, caption, voiceover, or script
-against the selected live campaign and relevant creator profile. It returns a
-score, requirement-by-requirement checklist, strengths, omissions, risk flags,
-a revised hook, an improved draft, and a shot list. Coaching never approves
-work or releases funds.
+Campaign Architect uses GPT-5.6 to turn business context into an editable
+creator brief, guardrails, ideal creator profile, success signal, hashtags,
+and three content angles. Creator Coach reviews a creator's hook, caption,
+voiceover, or script against the selected live campaign and returns a score,
+checklist, risk flags, revised draft, and shot list.
 
-The existing marketplace then handles applications, proof review,
-ledger-backed credit holds, and payouts.
+The marketplace handles applications, proof review, ledger-backed credit
+holds, and payouts. AI remains advisory and never publishes, approves, or
+releases funds.
 
 ## Inspiration
 
-Creator campaigns often fail before filming starts. A growing business has a
-product idea but not a precise brief; a creator receives scattered
-requirements and discovers too late that a mention, hashtag, restriction, or
-deliverable was missed. Both sides lose time, and the creator may have to
-reshoot.
+Emerging and established social-media creators need genuine opportunities to
+work with businesses, while businesses need authentic ways to introduce their
+products and services through creator videos.
 
-We wanted AI to reduce that coordination cost inside a real operational
-system—not add another generic chat box. Promo Zone AI makes the brief
-actionable for the business and makes pre-submission review specific to the
-creator and campaign.
+These partnerships are often managed through scattered messages and informal
+agreements. Businesses struggle to find suitable creators and communicate
+expectations, while creators struggle to discover opportunities, understand
+requirements, submit work, and track approvals and payments. We built Promo
+Zone AI to give both sides one structured marketplace, with GPT-5.6 improving
+brief preparation and creator coaching inside that workflow.
 
 ## How we built it
 
@@ -128,7 +129,7 @@ the static test suite could not expose.
 - Human-controlled publishing, approval, proof review, and payouts.
 - Prompt-injection boundaries, safe failures, rate limiting, and server-only
   secrets.
-- 7 passing Flutter tests with zero analyzer issues.
+- 8 passing Flutter tests with zero analyzer issues.
 - 15 passing Laravel tests with 70 assertions.
 - Timestamped old-vs-new evidence for an existing project.
 - End-to-end Android inspection for both roles.
@@ -149,6 +150,7 @@ suite cannot detect every packaging or platform-channel problem.
 - Add multilingual briefing and coaching for more African markets.
 - Introduce business-owned reusable brand policy packs.
 - Add creator consent controls for profile fields sent to AI.
+- Add a dedicated required-video-duration field to campaign briefs.
 - Integrate real Mobile Money settlement, webhooks, identity verification, and
   production fraud monitoring.
 

@@ -167,6 +167,32 @@ Verified July 19, 2026 at approximately 06:23 UTC:
 - After deployment, `/`, `/api/health`, `/api/ready`, and `/api/campaigns`
   returned `200`; an unauthenticated AI request still returned `401`.
 
+### Judge APK reliability refresh
+
+Verified July 19, 2026 at approximately 21:22 UTC:
+
+- Increased the Flutter API timeout default and both Android run-helper
+  defaults from 12 seconds to 60 seconds. This accommodates the backend's
+  45-second OpenAI processing window without changing campaign behavior,
+  authorization, approvals, or financial controls.
+- Added a regression test for the production timeout default.
+- `flutter analyze` completed with no issues.
+- `flutter test` passed all 8 tests.
+- Built a clean production-targeted universal APK with explicit
+  `API_TIMEOUT_MS=60000`.
+- The APK contains `armeabi-v7a`, `arm64-v8a`, and `x86_64` Flutter/app
+  libraries.
+- Replacement APK size: `56,496,807` bytes.
+- Replacement APK SHA-256:
+  `648a2c374fbff4ae51c67d9eed6b2d337bd3b0ae4b976b441c0bf3ad02afb672`.
+- Android inspection confirmed package `com.promozone.promozone`, version
+  `1.0.0`, minimum SDK 24, target SDK 36, label `Promo Zone AI`, and
+  `usesCleartextTraffic=false`.
+- APK Signature Scheme v2 verification passed.
+- The exact candidate installed and cold-launched on the API 36.1 x86_64
+  emulator, loaded production campaign data, and returned a complete live
+  Campaign Architect result from GPT-5.6.
+
 ## Deliberate boundaries
 
 - Real Mobile Money/bank settlement and payment-provider webhooks remain out of

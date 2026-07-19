@@ -8,7 +8,7 @@ class AppConfig {
 
   static const int apiTimeoutMs = int.fromEnvironment(
     'API_TIMEOUT_MS',
-    defaultValue: 12000,
+    defaultValue: 60000,
   );
 
   static const int apiRetryCount = int.fromEnvironment(

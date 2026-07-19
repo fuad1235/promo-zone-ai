@@ -163,7 +163,7 @@ flutter analyze
 flutter test
 ```
 
-Expected: no analyzer issues and 7 passing tests.
+Expected: no analyzer issues and 8 passing tests.
 
 ```bash
 cd backend
@@ -189,14 +189,16 @@ Matching production-targeted local artifact (ignored from Git):
 artifacts/Promo-Zone-AI-Android-e84350e.apk
 ```
 
-Built July 18, 2026 at 12:08:57 UTC:
+Rebuilt July 19, 2026 at 21:13:02 UTC:
 
 ```text
-Size: 56,497,051 bytes
-SHA-256: 6dc8b83fc8eb32017705305cc38dba1ad35a3c768db0f106895dd0c8416651b8
+Size: 56,496,807 bytes
+SHA-256: 648a2c374fbff4ae51c67d9eed6b2d337bd3b0ae4b976b441c0bf3ad02afb672
 API base URL: https://promozone.boldtechai.com
+API timeout: 60,000 milliseconds
 Application label: Promo Zone AI
 Android: minimum SDK 24, target SDK 36
+Architectures: armeabi-v7a, arm64-v8a, x86_64
 Manifest: usesCleartextTraffic=false
 Signature: verified with APK Signature Scheme v2
 ```
@@ -206,14 +208,17 @@ certificate because no production upload keystore is present. It contains the
 complete app and is suitable for direct testing, but not for Play Store
 publication.
 
-The public asset was downloaded again on July 19, 2026. Its byte size and
-SHA-256 matched the tested local artifact exactly.
+This exact APK was installed on an API 36.1 x86_64 emulator. It cold-launched
+successfully, loaded live production campaigns, and returned a complete
+Campaign Architect result from GPT-5.6 without the earlier 12-second client
+timeout.
 
 Reproduce it with:
 
 ```bash
 flutter build apk --release \
-  --dart-define=LARAVEL_API_BASE_URL=https://promozone.boldtechai.com
+  --dart-define=LARAVEL_API_BASE_URL=https://promozone.boldtechai.com \
+  --dart-define=API_TIMEOUT_MS=60000
 ```
 
 The GPT-5.6 backend overlay is deployed, both live AI flows pass, and the

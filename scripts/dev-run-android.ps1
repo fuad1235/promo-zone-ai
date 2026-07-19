@@ -3,7 +3,7 @@ param(
   [string]$DeviceId = "9ebc65d2",
   [string]$ApiBaseUrl = "http://127.0.0.1:8000",
   [string]$EnableVerboseApiLogs = "true",
-  [int]$ApiTimeoutMs = 12000,
+  [int]$ApiTimeoutMs = 60000,
   [int]$ApiRetryCount = 2,
   [string]$ApiRetryNonIdempotent = "false",
   [string]$FlutterBin = "flutter",

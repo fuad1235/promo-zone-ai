@@ -105,7 +105,8 @@ The submission owner must run `/feedback` in the Build Week Codex session and
 copy the resulting session ID into Devpost before submission.
 
 ```text
-CODEX_SESSION_ID=ADD_FROM_SLASH_FEEDBACK
+CODEX_SESSION_ID=019f74b3-0d8d-7c03-9045-a6708729aea8
 ```
 
-This repository intentionally does not invent or infer a session ID.
+This ID was returned after the submission owner ran `/feedback` and shared the
+current Codex build session.

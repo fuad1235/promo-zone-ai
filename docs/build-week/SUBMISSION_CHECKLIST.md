@@ -44,7 +44,7 @@ Verify the deadline and final requirements on the
 - [ ] Keep the final edit under three minutes.
 - [ ] Upload the video publicly to YouTube.
 - [ ] Create a 3:2 project thumbnail under Devpost's size limit.
-- [ ] Run `/feedback` in the Build Week Codex session.
+- [x] Run `/feedback` in the Build Week Codex session.
 - [ ] Copy the returned Codex session ID into Devpost.
 - [ ] Replace every `ADD_...` placeholder in `DEVPOST_SUBMISSION.md`.
 - [ ] Select **Work & Productivity**.

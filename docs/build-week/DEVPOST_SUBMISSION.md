@@ -24,7 +24,7 @@ Demo video: ADD_PUBLIC_YOUTUBE_URL
 Product: https://promozone.boldtechai.com
 Android release: https://github.com/fuad1235/promo-zone-ai/releases/tag/v1.0.0-build-week
 Direct APK: https://github.com/fuad1235/promo-zone-ai/releases/download/v1.0.0-build-week/Promo-Zone-AI-Android-e84350e.apk
-Codex session ID: ADD_FROM_SLASH_FEEDBACK
+Codex session ID: 019f74b3-0d8d-7c03-9045-a6708729aea8
 ```
 
 If the repository is private, grant access to both:
